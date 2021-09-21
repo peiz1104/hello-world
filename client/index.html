@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jsonp</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <h3>test jsonp</h3>
+  <div class="getApi" onclick="getApi(event)">获取数据</div>
+  <h3 class="name"></h3>
+  <h3 class="age"></h3>
+  <script type="text/javascript">
+    function runFun(data){
+      console.log(data)
+      if(data&&data.name){
+        var oname = document.getElementsByClassName('name')[0]
+        var oage = document.getElementsByClassName('age')[0]
+        oname.textContent = data.name
+        oage.textContent = data.age
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var api = `http://localhost:4002/getapi`
+    function getApi(e){
+      //  fetch(api).then(res=>res.json()).then((res)=>{
+      //    console.log(res,2423);
+      //  })
+      var src = api+`?callback=runFun`
+      var script = document.createElement('script')
+      script.setAttribute('type','text/javascript')
+      script.setAttribute('src',src)
+      document.body.appendChild(script)
+    }
+  </script>
+</body>
+</html>
