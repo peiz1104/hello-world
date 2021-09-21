@@ -14,7 +14,11 @@ http.createServer(function(req,res){
   }
   res.writeHead(200,{'Content-type':'text/html;charset=utf-8'})
   res.write("<head><meta charset='UTF-8'></head>")
+  if(Object.keys(urlObj.query).length){
+    res.write(`<h2>姓名： ${urlObj.query.name}；年龄：${urlObj.query.age}</h2>`)
+  }
   res.write('<h3>你好 佟雨兴</h3>')
+  res.write('<h2>node.js</h2>')
   res.end()
 }).listen(3005,()=>{
   console.log(`serve start port 3005`)
