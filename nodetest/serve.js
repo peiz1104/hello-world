@@ -17,7 +17,7 @@ http.createServer(function(req,res){
   if(Object.keys(urlObj.query).length){
     res.write(`<h2>姓名： ${urlObj.query.name}；年龄：${urlObj.query.age}</h2>`)
   }
-  res.write('<h3>你好 佟雨兴</h3>')
+  res.write('<h3>你好 张三</h3>')
   res.write('<h2>node.js</h2>')
   res.end()
 }).listen(3005,()=>{
