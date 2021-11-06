@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hash路由练习</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+    }
+    ul{
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      width: 80vw;
+      margin: 20px auto;
+    }
+    li a{
+      font-size: 14px;
+      font-weight: 600;
+    }
+    #app{
+      font-size: 30px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+ <ul>
+ <li><a class="link" data-url="/apage" href="javascript:void(0)">a页面</a></li>
+ <li><a class="link" href="javascript:void(0)" data-url="/bpage">b页面</a></li>
+ <li><a class="link" href="javascript:void(0)" data-url="/cpage">c页面</a></li>
+ <li><a class="link" href="javascript:void(0)" data-url="/dpage">d页面</a></li>
+ <li><a class="link" href="javascript:void(0)" data-url="/epage">e页面</a></li>
+ <li><a class="link" href="javascript:void(0)" data-url="fpage">f页面</a></li></ul>
+ <div id="app">默认内容</div>
+ <script type="text/javascript">
+  var routerData = [
+    {path:'/apage',content:'这是a页面的内容'},
+    {path:'/bpage',content:'这是b页面'},
+    {path:'/cpage',content:'这是c页面'},
+    {path:'/dpage',content:'这是d页面'},
+    {path:'/epage',content:'这是e页面'},
+    {path:'fpage',content:'这是f页面'}
+  ]
+  var app = document.getElementById('app');
+  var aLink =  document.getElementsByClassName('link')
+  var _path = location.hash.split('#')[1]
+
+  function refreshPage(path){
+    console.log(path);
+    routerData.map((item)=>{
+      if(path==item.path){
+        app.innerHTML = item.content;
+      }
+    })
+  }
+   refreshPage(_path);
+  for(var i = 0;i<aLink.length;i++){
+    aLink[i].addEventListener('click',function(item){
+      _path = this.getAttribute('data-url');
+      window.location.hash = _path;
+    },false)
+  }
+  window.addEventListener('hashchange',(e)=>{
+    const hashurl = e.target.location.hash.split('#')[1];
+     refreshPage(hashurl)
+  },false)
+ </script>
+</body>
+</html>
