@@ -47,8 +47,12 @@
      ]
      var app = document.getElementById('app');
      var aLink =  document.getElementsByClassName('link')
-     var _path
-   
+     var _path = location.pathname;
+
+     if(_path){
+       refreshPage(_path)
+     }
+    
      function refreshPage(path){
        console.log(path);
        routerData.map((item)=>{

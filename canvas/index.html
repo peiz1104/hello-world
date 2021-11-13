@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>canvas test</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+    }
+    canvas{
+      display: block;
+      margin: 10px auto;
+      border: 1px solid #aaa;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" width="500" height="500">your browser is not support canvas</canvas>
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx1 = canvas.getContext('2d');
+    drawLine(50,50,50,100,'red');
+    drawLine(50,100,100,100,'blue');
+    drawLine(100,100,100,50,'green');
+    drawLine(100,50,50,50,'purple');
+    drawLine(100,100,100,400,'#333');
+    drawLine(100,400,450,400,'#333');
+    function drawLine(bx,by,ex,ey,color,ctx=ctx1){
+      ctx.beginPath();
+      ctx.moveTo(bx,by)
+      ctx.lineTo(ex,ey)
+      ctx.strokeStyle = color;
+      ctx.lineWidth = '4px';
+      ctx.stroke();
+      ctx.closePath();
+    }
+    for(var i=0;i<8;i++){
+      let height = Math.random()*300
+      ctx1.fillStyle = '#'+(parseInt(Math.random()*0xffffff).toString(16))
+      ctx1.fillRect(120+i*40,400-height,20,height);
+    }
+
+  </script>
+</body>
+</html>
